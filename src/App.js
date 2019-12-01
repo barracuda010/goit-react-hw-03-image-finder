@@ -5,7 +5,6 @@ import SearchBar from './Components/Searchbar/SearchBar'
 import ImageGallery from './Components/ImageGallery/ImageGallery'
 import Button from './Components/Button/Button'
 import Modal from './Components/Modal/Modal'
-import PropTypes from 'prop-types'
 import s from './App.modules.css'
 
 
