@@ -25,14 +25,20 @@ export default class App extends Component {
   componentDidMount() {
     const { pageNumber } = this.state;
     this.getImages(pageNumber);
+
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { pageNumber } = this.state;
+    const { pageNumber, images } = this.state;
     if (prevState.pageNumber !== pageNumber) {
       this.loadMoreImages()
     }
-
+    if (images.length > 12) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
   }
 
 
@@ -63,12 +69,7 @@ export default class App extends Component {
 
   render() {
     const { images, isLoading, isModalOpen, image } = this.state
-    if (images.length > 12) {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: 'smooth',
-      });
-    }
+
     return (
       <div className={s.App}>
         <SearchBar onSearch={this.getImages} />
