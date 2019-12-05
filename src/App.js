@@ -23,8 +23,8 @@ export default class App extends Component {
   closeModal = () => this.setState({ isModalOpen: false });
 
   componentDidMount() {
-    const { query, pageNumber } = this.state;
-    this.getImages(query, pageNumber);
+    const { pageNumber } = this.state;
+    this.getImages(pageNumber);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -32,6 +32,7 @@ export default class App extends Component {
     if (prevState.pageNumber !== pageNumber) {
       this.loadMoreImages()
     }
+
   }
 
 
@@ -62,6 +63,12 @@ export default class App extends Component {
 
   render() {
     const { images, isLoading, isModalOpen, image } = this.state
+    if (images.length > 12) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
     return (
       <div className={s.App}>
         <SearchBar onSearch={this.getImages} />
